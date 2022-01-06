@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="info.erulinman.animations.list.ListFragment"
+        android:label="Animations"
+        tools:layout="@layout/fragment_animations">
+        <action
+            android:id="@+id/action_startFragment_to_animationUtilsFragment"
+            app:destination="@id/animationUtilsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/animationUtilsFragment"
+        android:name="info.erulinman.animations.animationutils.AnimationUtilsFragment"
+        android:label="AnimationUtils"
+        tools:layout="@layout/fragment_animation_utils" />
+</navigation>
