@@ -1,4 +1,4 @@
-package info.erulinman.recyclerview
+package info.erulinman.recyclerview.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

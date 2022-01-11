@@ -1,10 +1,12 @@
-package info.erulinman.recyclerview
+package info.erulinman.recyclerview.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import info.erulinman.recyclerview.DiffCallback
+import info.erulinman.recyclerview.Item
 import info.erulinman.recyclerview.databinding.ItemBinding
 
 class ItemAdapter(
