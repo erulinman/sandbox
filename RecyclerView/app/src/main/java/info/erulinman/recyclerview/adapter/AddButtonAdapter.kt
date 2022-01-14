@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import info.erulinman.recyclerview.databinding.AddButtonBinding
 
-class AddButtonAdapter(
-    private val onClick: () -> Unit
-) : RecyclerView.Adapter<AddButtonAdapter.AddButtonViewHolder>() {
+class AddButtonAdapter(private val onClick: () -> Unit) :
+    RecyclerView.Adapter<AddButtonAdapter.AddButtonViewHolder>() {
 
     class AddButtonViewHolder(binding: AddButtonBinding) : RecyclerView.ViewHolder(binding.root) {
 

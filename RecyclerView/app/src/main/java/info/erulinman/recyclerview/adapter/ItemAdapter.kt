@@ -5,28 +5,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import info.erulinman.recyclerview.DiffCallback
-import info.erulinman.recyclerview.Item
+import info.erulinman.recyclerview.MainViewModel
+import info.erulinman.recyclerview.data.Item
 import info.erulinman.recyclerview.databinding.ItemBinding
 
 class ItemAdapter(
+    private val viewModel: MainViewModel,
     private val onClick: (String) -> Unit
-) : ListAdapter<Item, ItemAdapter.ItemViewHolder>(DiffCallback()) {
+) : ListAdapter<Item, ItemAdapter.ItemViewHolder>(DiffCallback()), CustomItemTouchHelper.Adapter {
 
-    inner class ItemViewHolder(
-        private val binding: ItemBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    inner class ItemViewHolder(private val binding: ItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Item) {
-            Log.d("CHECKING", "ItemAdapter.ItemViewHolder.bind()")
-            val name = "Item #${item.id}"
+            val name = "id #${item.id}, position: ${item.position}"
             binding.item.text = name
-            itemView.setOnClickListener { onClick("$name pressed") }
+            itemView.setOnClickListener {
+                onClick("Position: $bindingAdapterPosition")
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        Log.d("CHECKING", "ItemAdapter.onCreateViewHolder()")
         val binding = ItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -36,8 +36,16 @@ class ItemAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        Log.d("CHECKING", "ItemAdapter.onBindViewHolder()")
         holder.bind(currentList[position])
+    }
+
+    override fun onItemMove(from: Int, to: Int) {
+        // TODO("Not yet implemented")
+    }
+
+    override fun onItemSwipe(position: Int) {
+        val item = currentList[position]
+        viewModel.deleteItem(item)
     }
 }
 

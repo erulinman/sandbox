@@ -1,22 +1,16 @@
-package info.erulinman.recyclerview
+package info.erulinman.recyclerview.adapter
 
 import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
+import info.erulinman.recyclerview.data.Item
 
 class DiffCallback : DiffUtil.ItemCallback<Item>() {
 
-    init {
-        Log.d("CHECKING", "DiffCallback.init()")
-    }
-
     override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-        Log.d("CHECKING", "ItemDiffCallback.areItemsTheSame(${oldItem.id == newItem.id})")
         return oldItem.id == newItem.id
     }
 
-
     override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
-        Log.d("CHECKING", "ItemDiffCallback.areContentsTheSame(${oldItem == newItem})")
         return oldItem == newItem
     }
 }
