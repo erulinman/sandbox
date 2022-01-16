@@ -20,4 +20,10 @@ interface ItemsDao {
 
     @Update
     suspend fun update(items: List<Item>)
+
+    @Transaction
+    suspend fun deleteAndUpdateInTransaction(item: Item, items: List<Item>) {
+        delete(item)
+        update(items)
+    }
 }

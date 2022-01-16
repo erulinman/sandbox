@@ -13,15 +13,12 @@ class RepositoryImpl(private val dao: ItemsDao) : Repository {
         val newList = mutableListOf<Item>()
         var correctPosition = 0
         oldList.forEach {
-            if (it == item) {
-                return@forEach
-            }
+            if (it == item) return@forEach
             val newItem = Item(it.id, correctPosition)
             newList.add(newItem)
             correctPosition++
         }
-        dao.update(newList)
-        dao.delete(item)
+        dao.deleteAndUpdateInTransaction(item, newList)
     }
 
     override suspend fun getMaxPosition() = dao.getMaxPosition()
